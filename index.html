@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maasa Media | Digital Agency</title>
+    <title>Maasa Media | Digital & Influencer Agency</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +18,7 @@
         :root {
             --bg-color: #050505;
             --surface-color: #121212;
+            --surface-light: #1e1e1e;
             --text-primary: #ffffff;
             --text-secondary: #888888;
             --accent-color: #00f2ea; /* Neon Cyan */
@@ -29,326 +30,182 @@
         }
 
         /* --- RESET & BASE --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-primary); font-family: var(--font-main); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         ul { list-style: none; }
         img { width: 100%; display: block; }
 
         /* --- UTILITIES --- */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
         .section-padding { padding: 120px 0; }
-
-        .display-text {
-            font-family: var(--font-display);
-            text-transform: uppercase;
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 1.1;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            color: var(--accent-color);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            display: block;
-        }
+        .display-text { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -1px; }
+        .subtitle { color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 16px; display: block; }
 
         /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: 0.3s;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 0; transition: 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05); background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(10px); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; letter-spacing: -1px; }
         .logo span { color: var(--accent-color); }
-
         .nav-links { display: flex; gap: 40px; }
-        
-        .nav-links a {
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-        }
-
+        .nav-links a { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
         .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .cta-btn { background: var(--text-primary); color: var(--bg-color); padding: 12px 28px; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; border-radius: 2px; }
+        .cta-btn:hover { background: var(--accent-color); color: #000; }
 
-        .cta-btn {
-            background: var(--text-primary);
-            color: var(--bg-color);
-            padding: 12px 28px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            border-radius: 2px;
-        }
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; align-items: center; position: relative; background: radial-gradient(circle at 70% 20%, rgba(0, 242, 234, 0.08), transparent 40%); }
+        .hero-content { max-width: 800px; position: relative; z-index: 2; }
+        .hero h1 { margin-bottom: 30px; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 40px; }
+        .scroll-indicator { position: absolute; bottom: 40px; left: 20px; writing-mode: vertical-rl; text-transform: uppercase; font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 2px; }
+        .scroll-line { width: 1px; height: 60px; background: var(--border-color); margin: 10px auto 0; position: relative; overflow: hidden; }
+        .scroll-line::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%; background: var(--accent-color); animation: scrollDown 2s infinite; }
+        @keyframes scrollDown { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
 
-        .cta-btn:hover {
-            background: var(--accent-color);
-            color: #000;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            background: radial-gradient(circle at 70% 20%, rgba(0, 242, 234, 0.08), transparent 40%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            margin-bottom: 30px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            writing-mode: vertical-rl;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: var(--border-color);
-            margin: 10px auto 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .scroll-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: var(--accent-color);
-            animation: scrollDown 2s infinite;
-        }
-
-        @keyframes scrollDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
-        /* --- SERVICES (Minimalist List) --- */
-        .services-list {
-            border-top: 1px solid var(--border-color);
-        }
-
-        .service-item {
-            border-bottom: 1px solid var(--border-color);
-            padding: 40px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: 0.3s;
-            group: 'service';
-        }
-
-        .service-item:hover {
-            background: var(--surface-color);
-            padding-left: 20px;
-            padding-right: 20px;
-            border-color: var(--accent-color);
-        }
-
+        /* --- SERVICES --- */
+        .services-list { border-top: 1px solid var(--border-color); }
+        .service-item { border-bottom: 1px solid var(--border-color); padding: 40px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; }
+        .service-item:hover { background: var(--surface-color); padding-left: 20px; padding-right: 20px; border-color: var(--accent-color); }
         .service-num { color: var(--text-secondary); font-family: var(--font-display); }
         .service-name { font-size: 2rem; font-weight: 300; }
         .service-icon { color: var(--accent-color); opacity: 0; transition: 0.3s; transform: translateX(-20px); }
-        
         .service-item:hover .service-icon { opacity: 1; transform: translateX(0); }
 
-        /* --- PORTFOLIO GRID --- */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 0; /* Seamless grid */
-        }
-
-        .portfolio-item {
-            position: relative;
+        /* --- MARQUEE (Influencer Specific) --- */
+        .marquee-section {
+            background: var(--accent-color);
+            color: #000;
+            padding: 20px 0;
             overflow: hidden;
-            aspect-ratio: 4/3;
-            group: 'portfolio';
+            white-space: nowrap;
+            position: relative;
+            transform: rotate(-2deg) scale(1.05);
+            z-index: 5;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-item {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-right: 50px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        .portfolio-item img {
+        /* --- INFLUENCER & CREATORS SECTION --- */
+        .influencer-section {
+            background-color: #080808;
+            position: relative;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 60px;
+        }
+        .stat-box {
+            text-align: left;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+        }
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: white;
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* Creator Cards */
+        .creator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .creator-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            group: 'creator';
+            border: 1px solid var(--border-color);
+        }
+        .creator-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            filter: grayscale(100%);
+            transition: 0.5s;
+            filter: grayscale(80%);
         }
-
-        .portfolio-item:hover img {
+        .creator-card:hover img {
             transform: scale(1.05);
             filter: grayscale(0%);
         }
-
-        .portfolio-overlay {
+        .creator-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, black, transparent);
+        }
+        .creator-name { font-weight: 700; font-size: 1.1rem; }
+        .creator-niche { color: var(--accent-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .platform-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
             background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: 0.3s;
+            justify-content: center;
+            font-size: 0.9rem;
         }
 
+        /* --- PORTFOLIO --- */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 0; }
+        .portfolio-item { position: relative; overflow: hidden; aspect-ratio: 4/3; group: 'portfolio'; }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); filter: grayscale(100%); }
+        .portfolio-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
+        .portfolio-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: 0.3s; }
         .portfolio-item:hover .portfolio-overlay { opacity: 1; }
-
         .project-cat { color: var(--accent-color); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
         .project-title { font-size: 1.5rem; font-weight: 700; }
 
-        /* --- ABOUT SECTION --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-img {
-            position: relative;
-        }
-
-        .about-img::before {
-            content: '';
-            position: absolute;
-            top: 20px; left: -20px;
-            width: 100%; height: 100%;
-            border: 1px solid var(--accent-color);
-            z-index: -1;
-        }
-
-        /* --- CONTACT --- */
-        .contact-section {
-            background: var(--surface-color);
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 50px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .input-group input, .input-group textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
-            color: white;
-            font-family: var(--font-main);
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        .input-group input:focus, .input-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .submit-btn {
-            background: var(--text-primary);
-            color: var(--bg-color);
-            padding: 20px;
-            border: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: var(--accent-color);
-            letter-spacing: 2px;
-        }
+        /* --- ABOUT & CONTACT (Brief) --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-img { position: relative; }
+        .about-img::before { content: ''; position: absolute; top: 20px; left: -20px; width: 100%; height: 100%; border: 1px solid var(--accent-color); z-index: -1; }
+        .contact-form { max-width: 600px; margin: 50px auto 0; display: flex; flex-direction: column; gap: 20px; }
+        .input-group input, .input-group textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); padding: 20px 0; color: white; font-family: var(--font-main); font-size: 1rem; transition: 0.3s; }
+        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--accent-color); }
+        .submit-btn { background: var(--text-primary); color: var(--bg-color); padding: 20px; border: none; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .submit-btn:hover { background: var(--accent-color); letter-spacing: 2px; }
 
         /* --- FOOTER --- */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 60px 0;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
+        footer { border-top: 1px solid var(--border-color); padding: 60px 0; margin-top: 60px; }
+        .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
         .footer-col h4 { margin-bottom: 20px; font-size: 1.1rem; }
         .footer-col ul li { margin-bottom: 10px; }
         .footer-col ul li a { color: var(--text-secondary); font-size: 0.9rem; }
@@ -356,30 +213,17 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simplified mobile handling */
+            .nav-links { display: none; }
             .hero { height: auto; padding: 150px 0 100px; text-align: center; }
             .hero p { margin: 0 auto 40px; }
             .about-grid { grid-template-columns: 1fr; }
             .service-item { flex-direction: column; text-align: center; gap: 20px; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .scroll-indicator { display: none; }
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--surface-color);
-                padding: 40px;
-                border-bottom: 1px solid var(--border-color);
-            }
+            .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: var(--surface-color); padding: 40px; border-bottom: 1px solid var(--border-color); }
             .mobile-toggle { display: block; font-size: 1.5rem; cursor: pointer; }
         }
-        
-        @media (min-width: 769px) {
-            .mobile-toggle { display: none; }
-        }
+        @media (min-width: 769px) { .mobile-toggle { display: none; } }
     </style>
 </head>
 <body>
@@ -387,12 +231,12 @@
     <!-- NAV -->
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo">MAASAMEDIA<span>.</span></a>
+            <a href="#" class="logo">MAASA<span>.</span></a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#creators">Creators</a></li>
                 <li><a href="#work">Work</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact" class="cta-btn">Let's Talk</a></li>
             </ul>
             <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
@@ -403,10 +247,10 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="subtitle">Digital Media Agency</span>
-                <h1 class="display-text">We Create <br><span style="color: var(--text-secondary); -webkit-text-stroke: 1px var(--text-secondary); color: transparent;">Digital</span> Impact.</h1>
-                <p>Maasa Media is a full-service creative agency specializing in branding, web design, and digital strategy. We turn complex problems into elegant digital solutions.</p>
-                <a href="#work" style="text-decoration: underline; text-underline-offset: 8px;">View Selected Works</a>
+                <span class="subtitle">Influencer Marketing & Digital Agency</span>
+                <h1 class="display-text">Amplify Voices.<br><span style="color: var(--text-secondary); -webkit-text-stroke: 1px var(--text-secondary); color: transparent;">Scale Brands.</span></h1>
+                <p>We bridge the gap between world-class creators and ambitious brands. Data-driven campaigns that resonate.</p>
+                <a href="#creators" style="text-decoration: underline; text-underline-offset: 8px;">Explore Our Roster</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -424,12 +268,12 @@
             <div class="services-list">
                 <div class="service-item">
                     <span class="service-num">01</span>
-                    <span class="service-name">Brand Strategy & Identity</span>
+                    <span class="service-name">Influencer Strategy</span>
                     <i class="fas fa-arrow-right service-icon"></i>
                 </div>
                 <div class="service-item">
                     <span class="service-num">02</span>
-                    <span class="service-name">Web Development</span>
+                    <span class="service-name">Talent Management</span>
                     <i class="fas fa-arrow-right service-icon"></i>
                 </div>
                 <div class="service-item">
@@ -439,64 +283,151 @@
                 </div>
                 <div class="service-item">
                     <span class="service-num">04</span>
-                    <span class="service-name">Digital Marketing</span>
+                    <span class="service-name">Paid Media (UGC)</span>
                     <i class="fas fa-arrow-right service-icon"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WORK / PORTFOLIO -->
+    <!-- MARQUEE (Trendy Influencer Element) -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span class="marquee-item">STRATEGY • CREATORS • TIKTOK • INSTAGRAM • YOUTUBE • UGC • SCALABLE CAMPAIGNS • </span>
+            <span class="marquee-item">STRATEGY • CREATORS • TIKTOK • INSTAGRAM • YOUTUBE • UGC • SCALABLE CAMPAIGNS • </span>
+        </div>
+    </div>
+
+    <!-- INFLUENCER / CREATOR NETWORK -->
+    <section id="creators" class="section-padding influencer-section">
+        <div class="container">
+            <div class="about-grid" style="margin-bottom: 60px;">
+                <div>
+                    <span class="subtitle">Our Reach</span>
+                    <h2 class="display-text" style="font-size: 2.5rem;">Creator Network</h2>
+                    <p style="color: var(--text-secondary); max-width: 500px;">
+                        Access a vetted roster of over 5,000+ creators across niches. From micro-influencers with high engagement to macro-celebrities.
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">500M+</span>
+                        <span class="stat-label">Total Followers</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">5k+</span>
+                        <span class="stat-label">Active Creators</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subtitle" style="margin-bottom: 30px;">Featured Talent</h3>
+            
+            <div class="creator-grid">
+                <!-- Creator 1 -->
+                <div class="creator-card">
+                    <div class="platform-tag"><i class="fab fa-instagram"></i></div>
+                    <img src="https://picsum.photos/seed/influencer1/400/600" alt="Creator">
+                    <div class="creator-overlay">
+                        <div class="creator-name">Elena V.</div>
+                        <div class="creator-niche">Lifestyle & Fashion</div>
+                    </div>
+                </div>
+                
+                <!-- Creator 2 -->
+                <div class="creator-card">
+                    <div class="platform-tag"><i class="fab fa-tiktok"></i></div>
+                    <img src="https://picsum.photos/seed/influencer2/400/600" alt="Creator">
+                    <div class="creator-overlay">
+                        <div class="creator-name">Marcus J.</div>
+                        <div class="creator-niche">Tech Reviews</div>
+                    </div>
+                </div>
+
+                <!-- Creator 3 -->
+                <div class="creator-card">
+                    <div class="platform-tag"><i class="fab fa-youtube"></i></div>
+                    <img src="https://picsum.photos/seed/influencer3/400/600" alt="Creator">
+                    <div class="creator-overlay">
+                        <div class="creator-name">Sarah K.</div>
+                        <div class="creator-niche">Gaming & Esports</div>
+                    </div>
+                </div>
+
+                <!-- Creator 4 -->
+                <div class="creator-card">
+                    <div class="platform-tag"><i class="fab fa-instagram"></i></div>
+                    <img src="https://picsum.photos/seed/influencer4/400/600" alt="Creator">
+                    <div class="creator-overlay">
+                        <div class="creator-name">David L.</div>
+                        <div class="creator-niche">Travel & Vlogs</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" class="cta-btn" style="background: transparent; border: 1px solid white; color: white;">View Full Roster</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK / PORTFOLIO (Case Studies) -->
     <section id="work" class="section-padding" style="background-color: var(--surface-color);">
         <div class="container" style="margin-bottom: 40px; display:flex; justify-content:space-between; align-items: flex-end;">
             <div>
-                <span class="subtitle">Portfolio</span>
-                <h2 class="display-text" style="font-size: 2.5rem;">Selected Works</h2>
+                <span class="subtitle">Case Studies</span>
+                <h2 class="display-text" style="font-size: 2.5rem;">Campaign Results</h2>
             </div>
-            <a href="#" style="color: var(--accent-color);">View All Projects <i class="fas fa-arrow-right"></i></a>
+            <a href="#" style="color: var(--accent-color);">View All Reports <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="portfolio-grid">
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa1/800/600" alt="Work 1">
+                <img src="https://picsum.photos/seed/campaign1/800/600" alt="Campaign 1">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">Branding</span>
-                    <h3 class="project-title">Neon Flux</h3>
+                    <span class="project-cat">Apparel Launch</span>
+                    <h3 class="project-title">Neon Drop '23</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">2.5M Impressions</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa2/800/600" alt="Work 2">
+                <img src="https://picsum.photos/seed/campaign2/800/600" alt="Campaign 2">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">Web Design</span>
-                    <h3 class="project-title">Apex Architecture</h3>
+                    <span class="project-cat">Gaming Gear</span>
+                    <h3 class="project-title">Pro Controller</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">12% Conv. Rate</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa3/800/600" alt="Work 3">
+                <img src="https://picsum.photos/seed/campaign3/800/600" alt="Campaign 3">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">Photography</span>
-                    <h3 class="project-title">Urban Style</h3>
+                    <span class="project-cat">Beauty Brand</span>
+                    <h3 class="project-title">Glow Up</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">450k Sales</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa4/800/600" alt="Work 4">
+                <img src="https://picsum.photos/seed/campaign4/800/600" alt="Campaign 4">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">App Dev</span>
-                    <h3 class="project-title">FinTrack Mobile</h3>
+                    <span class="project-cat">F&B</span>
+                    <h3 class="project-title">Healthy Eats</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">Viral Trend</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa5/800/600" alt="Work 5">
+                <img src="https://picsum.photos/seed/campaign5/800/600" alt="Campaign 5">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">Marketing</span>
-                    <h3 class="project-title">Eco Campaign</h3>
+                    <span class="project-cat">Tech SaaS</span>
+                    <h3 class="project-title">Cloud Sync</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">Lead Gen</span>
                 </div>
             </div>
             <div class="portfolio-item">
-                <img src="https://picsum.photos/seed/maasa6/800/600" alt="Work 6">
+                <img src="https://picsum.photos/seed/campaign6/800/600" alt="Campaign 6">
                 <div class="portfolio-overlay">
-                    <span class="project-cat">3D Design</span>
-                    <h3 class="project-title">Abstract Visions</h3>
+                    <span class="project-cat">Automotive</span>
+                    <h3 class="project-title">Electric Future</h3>
+                    <span style="font-size: 0.8rem; color: #ccc;">Brand Awareness</span>
                 </div>
             </div>
         </div>
@@ -507,27 +438,17 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <span class="subtitle">Who We Are</span>
-                    <h2 class="display-text" style="font-size: 2.5rem; margin-bottom: 30px;">Maasa Media Agency</h2>
+                    <span class="subtitle">Why Maasa Media?</span>
+                    <h2 class="display-text" style="font-size: 2.5rem; margin-bottom: 30px;">We Speak Creator</h2>
                     <p style="color: var(--text-secondary); margin-bottom: 20px;">
-                        Founded in 2020, we are a collective of designers, developers, and strategists obsessed with quality. We don't just build websites; we build digital ecosystems that help businesses grow.
+                        Unlike traditional agencies, we grew up with the creators we manage. We understand the nuances of authentic content vs. forced advertising.
                     </p>
                     <p style="color: var(--text-secondary); margin-bottom: 40px;">
-                        Our approach is simple: listen to the client, understand the audience, and execute with precision.
+                        Our proprietary platform matches brand KPIs with creator audience demographics instantly.
                     </p>
-                    <div style="display: flex; gap: 40px;">
-                        <div>
-                            <h3 style="font-size: 2.5rem; font-family: var(--font-display);">50+</h3>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Projects Done</p>
-                        </div>
-                        <div>
-                            <h3 style="font-size: 2.5rem; font-family: var(--font-display);">12</h3>
-                            <p style="color: var(--text-secondary); font-size: 0.9rem;">Awards Won</p>
-                        </div>
-                    </div>
                 </div>
                 <div class="about-img">
-                    <img src="https://picsum.photos/seed/office/600/700" alt="Agency Office">
+                    <img src="https://picsum.photos/seed/meeting/600/700" alt="Team Meeting">
                 </div>
             </div>
         </div>
@@ -536,20 +457,20 @@
     <!-- CONTACT -->
     <section id="contact" class="section-padding contact-section">
         <div class="container">
-            <span class="subtitle">Get In Touch</span>
-            <h2 class="display-text" style="font-size: 2.5rem;">Start a Project</h2>
+            <span class="subtitle">Partner With Us</span>
+            <h2 class="display-text" style="font-size: 2.5rem;">Start a Campaign</h2>
             
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message Sent! (Demo)');">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Request Sent!');">
                 <div class="input-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" placeholder="Brand Name / Contact Name" required>
                 </div>
                 <div class="input-group">
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" placeholder="Business Email" required>
                 </div>
                 <div class="input-group">
-                    <textarea rows="4" placeholder="Tell us about your project" required></textarea>
+                    <textarea rows="4" placeholder="Campaign Goals (e.g., TikTok Launch, YouTube Review)" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">Send Proposal Request</button>
             </form>
         </div>
     </section>
@@ -561,7 +482,7 @@
                 <div class="footer-col" style="flex: 2; min-width: 300px;">
                     <a href="#" class="logo" style="margin-bottom: 20px; display:block;">MAASA<span>.</span></a>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 300px;">
-                        Elevating brands through digital innovation. Based in Tokyo, working globally.
+                        The leading influencer marketing agency for the next generation of brands.
                     </p>
                 </div>
                 <div class="footer-col">
@@ -569,8 +490,17 @@
                     <ul>
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#work">Work</a></li>
+                        <li><a href="#creators">Creators</a></li>
                         <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Platforms</h4>
+                    <ul>
+                        <li><a href="#">Instagram Marketing</a></li>
+                        <li><a href="#">TikTok Campaigns</a></li>
+                        <li><a href="#">YouTube Collabs</a></li>
+                        <li><a href="#">Twitch Streaming</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -579,19 +509,17 @@
                         <li><a href="#">Instagram</a></li>
                         <li><a href="#">Twitter</a></li>
                         <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Behance</a></li>
                     </ul>
                 </div>
             </div>
             <div style="margin-top: 60px; text-align: center; color: #444; font-size: 0.8rem;">
-                &copy; 2023 Maasa Media. All rights reserved.
+                &copy; 2023 Maasa Media Influencer Agency. All rights reserved.
             </div>
         </div>
     </footer>
 
     <!-- JS -->
     <script>
-        // Mobile Menu Toggle
         const toggle = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
         const header = document.querySelector('header');
@@ -600,7 +528,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Scroll Effect for Header
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.style.padding = '15px 0';
